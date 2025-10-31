@@ -1,0 +1,15 @@
+{
+  "name": "fullstack-app",
+  "version": "1.0.0",
+  "description": "React frontend + FastAPI backend run with a single command",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm start --prefix frontend\" \"uvicorn backend.app:app --reload\" \"sleep 5 && npx open http://localhost:3000\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.1",
+    "open": "^9.1.0"
+  },
+  "author": "Ankush Husenkar",
+  "license": "MIT"
+}
