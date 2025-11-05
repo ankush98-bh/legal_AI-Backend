@@ -1,5 +1,5 @@
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException, Response, Request
-#rom ..services.auth_service import authorize
+from ..services.auth_service import authorize
 from typing import Optional
 import json
 from ..services.format_res import format_response
@@ -10,7 +10,7 @@ from ..config import DEFAULT_MODEL
 router = APIRouter()
 
 @router.post("/generate_custom_draft")
-#authorize()
+#@authorize()
 async def generate_document_format(
     request: Request,
     sample_file: Optional[UploadFile] = File(None),

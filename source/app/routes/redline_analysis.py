@@ -1,5 +1,5 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException, Response, Form, status, Request
-#rom ..services.auth_service import authorize
+#from ..services.auth_service import authorize
 from fastapi.responses import JSONResponse
 from typing import Optional
 import json
@@ -77,7 +77,7 @@ You MUST return only valid JSON — no markdown, no commentary, no extra text.
 
 
 @router.post("/redline_analysis")
-#authorize()
+#@authorize()
 async def redline_analysis(
     request: Request,
     file1: UploadFile = File(...),

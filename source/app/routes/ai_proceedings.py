@@ -1,6 +1,6 @@
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException, Request
 from ..services import extract_text_from_file_path, is_likely_case_file, parse_conversation
-#rom ..services.auth_service import authorize
+from ..services.auth_service import authorize
 from ..config import DEFAULT_MODEL, UPLOAD_FOLDER, OLLAMA_BASE_URL
 from langchain.prompts import PromptTemplate
 from langchain_ollama import OllamaLLM

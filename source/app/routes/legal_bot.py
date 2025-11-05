@@ -192,24 +192,23 @@ async def legal_bot(
             #     print('Response is not generated')
             # update_general_chat_history(session_id, general_conversation.memory) # Update history
             # return {"answer": response['answer'], "session_id": session_id}
-            #print('response is generating...')
+            print('response is generating...')
             response = await general_conversation.ainvoke({'input': question})
-            print("\n✅ MODEL RAW RESPONSE ✅",flush=True)
+            print("\n✅ MODEL RAW RESPONSE ✅", flush=True)
             print(response)
+
             if not response:
-                print("❌ No response generated!",flush=True)
                 return {"answer": "Sorry, I could not generate a response.", "session_id": session_id}
 
-            print("\n====== RAW GENERAL RESPONSE ======")
-            print(response)
-
-            final_answer = response.get('answer') or response.get('output') or str(response)
+            # ✅ Only take the actual text content
+            final_answer = response.get("response") or response.get("answer") or response.get("output") or str(response)
 
             update_general_chat_history(session_id, general_conversation.memory)
 
-            return {"answer": final_answer, "session_id": session_id}
+            return {"answer": final_answer.strip(), "session_id": session_id}
 
     except Exception as e:
+        print(e)
         return {
             'error': str(e),
             'error_type': str(type(e).__name__),

@@ -1,5 +1,5 @@
 from fastapi import APIRouter, UploadFile, File, Form, Response, Request
-#rom ..services.auth_service import authorize
+#from ..services.auth_service import authorize
 from typing import Optional
 from ..services import call_ollama_api, extract_text_from_file, format_response
 from ..config import DEFAULT_MODEL
@@ -7,7 +7,7 @@ from ..config import DEFAULT_MODEL
 router = APIRouter()
 
 @router.post("/compare_documents")
-#authorize()
+#@authorize()
 async def compare_documents(
     request: Request,
     file1: UploadFile = File(...),

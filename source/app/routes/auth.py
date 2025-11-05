@@ -57,7 +57,7 @@ def login(payload: LoginRequest,  response: Response, db: Session = Depends(get_
         value=token,
         httponly=True,
         secure=False,
-        samesite="Lax",
+        samesite="None",
         max_age=1800
     )
     return TokenResponse(access_token=token)

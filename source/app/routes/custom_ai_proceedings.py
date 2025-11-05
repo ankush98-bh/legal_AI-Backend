@@ -1,5 +1,5 @@
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException, Depends, Request
-#rom ..services.auth_service import authorize
+from ..services.auth_service import authorize
 from typing import Optional
 from ..services import extract_text_from_file_path, is_likely_case_file, parse_conversation, preprocess_text, get_court_proceedings_conversation_chain, court_proceedings_conversation_chain, extract_conversational_lines_from_chat_history
 from ..config import UPLOAD_FOLDER

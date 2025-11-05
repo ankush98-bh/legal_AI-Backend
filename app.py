@@ -48,8 +48,11 @@ app = FastAPI(
 #     allow_headers=["*"],  # Allows all headers
 # )
 origins = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
+    "http://74.225.226.138",
+    "http://74.225.226.138:3000",
+    "http://74.225.226.138:5173",
+    "http://localhost:3000",
+    "http://localhost:5173"
 ]
 
 app.add_middleware(

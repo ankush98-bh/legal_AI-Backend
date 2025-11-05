@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Body, UploadFile, File, Form, HTTPException, Request
-#rom ..services.auth_service import authorize
+from ..services.auth_service import authorize
 from pydantic import BaseModel
 import os
 import shutil
@@ -12,7 +12,7 @@ BASE_DIR = "drafts"
 
 
 @router.post("/save_draft")
-#authorize()
+#@authorize()
 async def save_draft_form(
     request: Request,
     draft_content: UploadFile = File(...),

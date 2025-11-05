@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Response, Request
-#rom ..services.auth_service import authorize
+#from ..services.auth_service import authorize
 from ..services.format_res import format_response
 from ..services.call_ollama import call_ollama_api
 from ..services.prompt_gen import generate_prompt
@@ -9,7 +9,7 @@ from ..config import DEFAULT_MODEL
 router = APIRouter()
 
 @router.post("/query")
-#authorize()
+#@authorize()
 async def query(request: Request, query: QueryRequest, current_user=None):
     try:
         

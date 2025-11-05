@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Response, UploadFile, File, Form, Query, Request
-#rom ..services.auth_service import authorize
+#from ..services.auth_service import authorize
 from fastapi.responses import JSONResponse
 import json
 from typing import Optional, Any
@@ -11,7 +11,7 @@ from ..config import DEFAULT_MODEL
 router = APIRouter()
 
 @router.post("/summarize_file")
-#authorize()
+#@authorize()
 async def summarize_file(
     request: Request,
     file: UploadFile = File(...),

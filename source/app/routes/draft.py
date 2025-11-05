@@ -1,11 +1,11 @@
 from fastapi import APIRouter
-#rom ..services.auth_service import authorize
+#from ..services.auth_service import authorize
 from fastapi import Request
 
 router = APIRouter()
 
 @router.get("/draft_document")
-#authorize()
+#@authorize()
 async def draft_document(request: Request, current_user=None):
     try:
         return {'response':

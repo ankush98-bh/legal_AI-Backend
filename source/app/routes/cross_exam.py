@@ -1,7 +1,7 @@
 import os
 import aiofiles
 from fastapi import APIRouter, UploadFile, File, HTTPException, Form, Request
-#rom ..services.auth_service import authorize
+#from ..services.auth_service import authorize
 from fastapi.responses import JSONResponse
 from ..services import extract_text_from_file_path, call_ollama_api
 from ..config import DEFAULT_MODEL, UPLOAD_FOLDER
@@ -9,7 +9,7 @@ from ..config import DEFAULT_MODEL, UPLOAD_FOLDER
 router = APIRouter()
 
 @router.post("/cross_exam")
-#authorize()
+#@authorize()
 async def cross_exam(
     request: Request,
     file: UploadFile = File(...),

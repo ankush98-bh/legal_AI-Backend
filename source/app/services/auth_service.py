@@ -34,35 +34,36 @@ def decode_access_token(token: str):
             headers={"WWW-Authenticate": "Bearer"},
         )
     
-# def authorize():
-#     def decorator(func):
-#         @wraps(func)
-#         async def wrapper(*args, **kwargs):
-#             # Extract `request` from args or kwargs
-#             request: Request = kwargs.get('request') or next((arg for arg in args if isinstance(arg, Request)), None)
-#             if not request:
-#                 raise HTTPException(status_code=500, detail="Request object not found")
+def authorize():
+    def decorator(func):
+        @wraps(func)
+        async def wrapper(*args, **kwargs):
+            # Extract `request` from args or kwargs
+            request: Request = kwargs.get('request') or next((arg for arg in args if isinstance(arg, Request)), None)
+            if not request:
+                raise HTTPException(status_code=500, detail="Request object not found")
 
-#             token = request.cookies.get("access_token")
-#             print("token-->",token,type(token))
-#             if not token:
-#                 raise HTTPException(status_code=401, detail="Not authenticated")
-#             try:
-#                 payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-#                 print("payload-->",payload)
-#                 user_id = payload.get("sub")
-#                 print("sub: ", user_id)
-#                 if not user_id:
-#                     raise HTTPException(status_code=400, detail="Invalid token payload")
-#             except Exception as e:
-#                 raise HTTPException(status_code=400, detail="Invalid or expired token")
+            token = request.cookies.get("access_token")
+            print("token-->",token,type(token))
+            # if not token:
+            #     raise HTTPException(status_code=401, detail="Not authenticated")
+            # try:
+            #     payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+            #     print("payload-->",payload)
+            #     user_id = payload.get("sub")
+            #     print("sub: ", user_id)
+            #     if not user_id:
+            #         raise HTTPException(status_code=400, detail="Invalid token payload")
+            # except Exception as e:
+            #     raise HTTPException(status_code=400, detail="Invalid or expired token")
 
-#             db: Session = next(get_db())
-#             user = db.query(User).filter(User.user_id == user_id).first()
-#             if not user:
-#                 raise HTTPException(status_code=400, detail="User not found")
+            # db: Session = next(get_db())
+            # user = db.query(User).filter(User.user_id == user_id).first()
+            # if not user:
+                # raise HTTPException(status_code=400, detail="User not found")
 
-#             kwargs["current_user"] = user
-#             return await func(*args, **kwargs)
-#         return wrapper
-#     return decorator
+            # kwargs["current_user"] = user
+            kwargs["current_user"] = None
+            return await func(*args, **kwargs)
+        return wrapper
+    return decorator
